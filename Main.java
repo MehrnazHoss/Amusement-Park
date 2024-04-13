@@ -1,78 +1,79 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class Main extends JFrame{
     public static JPanel panel1; //player1
+    public static JPanel panel11; //player1
     public static JPanel panel2; //player2
+    public static JPanel panel21; //player2
     public static JPanel panel3; //slot machines
-    public static JPanel panel4; //slot machines
-    public static JPanel panel5; //game board
-    public static JPanel panel6; //cards
-
-    public final JLabel label1; //player1
-    public final JLabel label2; //player2
-    public final JLabel label3; //slot machines
-    public final JLabel label5; //game board
-    public final JLabel label6; //ticket sales
-
+    public static JPanel panel31; //slot machine
+    public static JPanel panel32; //slot machine
+    public static JPanel panel4; //game board
+    public static JPanel panel41; //game board
+    private static ActionEvent click;
 
 
     public Main(){
         setTitle("\uD83C\uDFA1Amusement Park\uD83C\uDFA0");
-        setSize(1400,900);
+        setSize(1500,900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon image = new ImageIcon("amusement park.jpg");
+        setIconImage(image.getImage());
 
         //panel1 (player1)
         panel1 = new JPanel();
-        panel1.setBackground(Color.blue);
-        label1 = new JLabel("Player 1");
-        panel1.add(label1);
+        panel1.setBackground(new Color(0,100,255));
+        panel11 = new JPanel();
+        panel11.setBackground(new Color(0,100,255));
 
         //panel2 (player2)
         panel2 = new JPanel();
-        panel2.setBackground(Color.RED);
-        label2 = new JLabel("Player 2");
-        panel2.add(label2);
+        panel2.setBackground(new Color(150,10,30));
+        panel21 = new JPanel();
+        panel21.setBackground(new Color(150,10,30));
+
+        new Players();
+
 
         //panel3 (slot machines)
         panel3 = new JPanel();
-        panel3.setBackground(Color.ORANGE);
-        label3 = new JLabel("\uD83C\uDFB0Slot Machines\uD83C\uDFB0");
-        panel3.add(label3);
-        //panel4 (slot machines)
-        panel4 = new JPanel();
-        panel4.setBackground(Color.ORANGE);
+        panel3.setBackground(new Color(150,150,255));
+        panel31 = new JPanel();
+        panel31.setBackground(new Color(150,150,255));
+        panel32 = new JPanel();
+        panel32.setBackground(new Color(150,150,255));
         new SlotMachine();
 
         //panel5 (game board)
-        panel5 = new JPanel();
-        panel5.setBackground(Color.LIGHT_GRAY);
-        label5 = new JLabel("Game Board");
-        panel5.add(label5);
+        panel4 = new JPanel();
+        panel4.setBackground(new Color(250,100,90));
+        panel41 = new JPanel();
+        panel41.setBackground(new Color(250,100,90));
 
-        //panel6 (cards)
-        panel6 = new JPanel();
-        panel6.setBackground(Color.BLACK);
-        label6 = new JLabel("Ticket Sales");
-        panel6.add(label6);
         new Cards();
         new PrizeClawCards();
 
+        setLayout(new GridLayout(3,3));
 
-        getContentPane().setLayout(new GridLayout(3,2));
-
-        getContentPane().add(panel1);
-        getContentPane().add(panel3);
-        getContentPane().add(panel5);
-        getContentPane().add(panel4);
-        getContentPane().add(panel2);
-        getContentPane().add(panel6);
+        add(panel1);
+        add(panel11);
+        add(panel3);
+        add(panel4);
+        add(panel41);
+        add(panel31);
+        add(panel2);
+        add(panel21);
+        add(panel32);
 
         setVisible(true);
     }
 
     public static void main(String[] args){
-        new Main();
-
+        SwingUtilities.invokeLater(() -> {
+            StartGame startGame = new StartGame();
+            startGame.setVisible(true);
+        });
     }
 }
