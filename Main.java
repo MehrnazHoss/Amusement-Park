@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.Callable;
 
 public class Main extends JFrame{
     public static JPanel panel1; //player1
@@ -12,7 +14,14 @@ public class Main extends JFrame{
     public static JPanel panel32; //slot machine
     public static JPanel panel4; //game board
     public static JPanel panel41; //game board
-    private static ActionEvent click;
+
+    JButton userName1;
+    JButton userName2;
+    JTextField textField1;
+    JTextField textField2;
+    JFrame submit1;
+    JFrame submit2;
+    public static int play = 1;
 
 
     public Main(){
@@ -30,9 +39,9 @@ public class Main extends JFrame{
 
         //panel2 (player2)
         panel2 = new JPanel();
-        panel2.setBackground(new Color(150,10,30));
+        panel2.setBackground(new Color(200,20,100));
         panel21 = new JPanel();
-        panel21.setBackground(new Color(150,10,30));
+        panel21.setBackground(new Color(200,20,100));
 
         new Players();
 
@@ -52,8 +61,19 @@ public class Main extends JFrame{
         panel41 = new JPanel();
         panel41.setBackground(new Color(250,100,90));
 
-        new Cards();
-        new PrizeClawCards();
+        Cards.createCards();
+        PrizeClawCards.createPrizeClawCards();
+
+        for (int i = 0; i < 200; i++) {
+            if (play == 1) {
+                Cards.functionOfCards(play);
+                SlotMachine.functionOfSlot(play);
+            }
+            if (play == 2){
+                Cards.functionOfCards(play);
+                SlotMachine.functionOfSlot(play);
+            }
+        }
 
         setLayout(new GridLayout(3,3));
 
@@ -68,6 +88,52 @@ public class Main extends JFrame{
         add(panel32);
 
         setVisible(true);
+
+        submit1 = new JFrame();
+        submit1.setLayout(new FlowLayout());
+        userName1 = new JButton("Submit");
+        userName1.setFocusable(false);
+        textField1 = new JTextField();
+        textField1.setPreferredSize(new Dimension(150,40));
+        textField1.setFont(new Font("Consolas",Font.PLAIN,30));
+        textField1.setForeground(new Color(0,200,250));
+        textField1.setBackground(new Color(10,50,150));
+        textField1.setEditable(true);
+        submit1.add(userName1);
+        submit1.add(textField1);
+        submit1.pack();
+        submit1.setVisible(true);
+        userName1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                textField1.getText();
+                Players.scoreOfPlayer1.setText(textField1.getText() + " Score: " + Players.totalScore1);
+                Players.scoreOfPlayer1.setFont(new Font("Comic Sans",Font.BOLD,30));
+
+                submit2 = new JFrame();
+                submit2.setLayout(new FlowLayout());
+                userName2 = new JButton("Submit");
+                userName2.setFocusable(false);
+                textField2 = new JTextField();
+                textField2.setPreferredSize(new Dimension(150,40));
+                textField2.setFont(new Font("Consolas",Font.PLAIN,30));
+                textField2.setForeground(new Color(255,170,255));
+                textField2.setBackground(new Color(200,20,150));
+                textField2.setEditable(true);
+                submit2.add(userName2);
+                submit2.add(textField2);
+                submit2.pack();
+                submit2.setVisible(true);
+                userName2.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        textField2.getText();
+                        Players.scoreOfPlayer2.setText(textField2.getText() + " Score: " + Players.totalScore2);
+                        Players.scoreOfPlayer2.setFont(new Font("Comic Sans",Font.BOLD,30));
+                    }
+                });
+            }
+        });
     }
 
     public static void main(String[] args){
