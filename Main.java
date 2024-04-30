@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.Callable;
 
 public class Main extends JFrame{
     public static JPanel panel1; //player1
@@ -21,7 +20,8 @@ public class Main extends JFrame{
     JTextField textField2;
     JFrame submit1;
     JFrame submit2;
-    public static int play = 1;
+
+    public static int turn = 1;
 
 
     public Main(){
@@ -43,7 +43,6 @@ public class Main extends JFrame{
         panel21 = new JPanel();
         panel21.setBackground(new Color(200,20,100));
 
-        new Players();
 
 
         //panel3 (slot machines)
@@ -61,19 +60,6 @@ public class Main extends JFrame{
         panel41 = new JPanel();
         panel41.setBackground(new Color(250,100,90));
 
-        Cards.createCards();
-        PrizeClawCards.createPrizeClawCards();
-
-        for (int i = 0; i < 200; i++) {
-            if (play == 1) {
-                Cards.functionOfCards(play);
-                SlotMachine.functionOfSlot(play);
-            }
-            if (play == 2){
-                Cards.functionOfCards(play);
-                SlotMachine.functionOfSlot(play);
-            }
-        }
 
         setLayout(new GridLayout(3,3));
 
@@ -134,7 +120,33 @@ public class Main extends JFrame{
                 });
             }
         });
+        Cards.createCards();
+        PrizeClawCards.createPrizeClawCards();
+        new Players();
+
+        JButton turnButton = new JButton("1");
+        turnButton.setFocusable(false);
+        turnButton.setPreferredSize(new Dimension(300,50));
+        turnButton.setBackground(Color.ORANGE);
+        turnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (turn == 1){
+                    Players.player1();
+                    turnButton.setText("2");
+                    turn = 2;
+                }
+                else if (turn == 2){
+                    Players.player2();
+                    turnButton.setText("1");
+                    turn = 1;
+                }
+            }
+        });
+
+        panel41.add(turnButton);
     }
+
 
     public static void main(String[] args){
         SwingUtilities.invokeLater(() -> {

@@ -11,6 +11,7 @@ public class Cards extends JFrame{
     static final int countOfAdultsCards = 15;
 
     static int i,j,k,column;
+    static int i0 = 0,i1 = 0,j0 = 0,j1 = 0,Card = 6;
 
     public static JButton[][] cardsButtons = new JButton[15][3];
 
@@ -134,22 +135,80 @@ public class Cards extends JFrame{
                     cardFrame1.pack();
                     cardFrame1.setVisible(true);
 
+                    if (play == 1) {
+                        purchaseButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
 
-                    purchaseButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            if (play == 1) Players.player1(purchaseButton, null, null,0,null, i, 0);
-                            else if (play == 2) Players.player2(purchaseButton, null, null,0,null, i, 0);
-                        }
-                    });
+//                                Players.player1(purchaseButton, null, null,0,null, i, 0);
+                                Players.buttons1[i0].setIcon(icon1);
+                                Players.buttons1[i0].add(label1[i], BorderLayout.CENTER);
+                                Players.totalScore1 += childrenCardScore[i];
+                                i0++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(cardsButtons[i][column]);
+                                    Main.panel4.add(cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
+                    else if (play == 2) {
+                        purchaseButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+//                                Players.player2(purchaseButton, null, null,0,null, i, 0);
+                                Players.buttons2[i1].setIcon(icon1);
+                                Players.buttons2[i1].add(label1[i], BorderLayout.CENTER);
+                                Players.totalScore2 += childrenCardScore[i];
+                                i1++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(cardsButtons[i][column]);
+                                    Main.panel4.add(cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
 
-                    reserveButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            if (play == 1) Players.player1(null, reserveButton, null,0,null, i, 0);
-                            else if (play == 2) Players.player2(null, reserveButton, null,0,null, i, 0);
-                        }
-                    });
+                    if (play == 1) {
+                        reserveButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+//                            if (play == 1) {
+//                                Players.player1(null, reserveButton, null,0,null, i, 0);
+                                Players.reserve1[j0].setIcon(icon1);
+                                Players.reserve1[j0].add(label1[i], BorderLayout.CENTER);
+                                j0++;
+                                if (Card >= 6 && Card <= 14) {
+                                    Main.panel4.remove(cardsButtons[i][column]);
+                                    Main.panel4.add(cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+//                            }
+                            }
+                        });
+                    }
+                    else if (play == 2) {
+                        reserveButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+//                                Players.player2(null, reserveButton, null,0,null, i, 0);
+                                Players.reserve2[j1].setIcon(icon1);
+                                Players.reserve2[j1].add(label1[i], BorderLayout.CENTER);
+                                j1++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(cardsButtons[i][column]);
+                                    Main.panel4.add(cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -178,20 +237,79 @@ public class Cards extends JFrame{
                     cardFrame2.pack();
                     cardFrame2.setVisible(true);
 
-                    purchaseButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            if (play == 1) Players.player1(purchaseButton, null, null,0,null, j, 1);
-                            else if (play == 2) Players.player2(purchaseButton, null, null,0,null, j, 1);
-                        }
-                    });
-                    reserveButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            if (play == 1) Players.player1(null, reserveButton, null,0,null, j, 1);
-                            else if (play == 2) Players.player2(null, reserveButton, null,0,null, j, 1);
-                        }
-                    });
+                    if (play == 1) {
+                        purchaseButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+
+//                                Players.player1(purchaseButton, null, null,0,null, j, 1);
+                                Players.buttons1[i0].setIcon(icon2);
+                                Players.buttons1[i0].add(label2[j], BorderLayout.CENTER);
+                                Players.totalScore1 += youthCardScore[j];
+                                i0++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(cardsButtons[j][column]);
+                                    Main.panel4.add(cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
+                    else if (play == 2) {
+                        purchaseButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+//                                Players.player2(purchaseButton, null, null,0,null, j, 1);
+                                Players.buttons2[i1].setIcon(icon2);
+                                Players.buttons2[i1].add(label2[i], BorderLayout.CENTER);
+                                Players.totalScore2 += youthCardScore[j];
+                                i1++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(cardsButtons[j][column]);
+                                    Main.panel4.add(cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
+
+                    if (play == 1) {
+                        reserveButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+
+//                                Players.player1(null, reserveButton, null,0,null, j, 1);
+                                Players.reserve1[j0].setIcon(icon2);
+                                Players.reserve1[j0].add(label2[j], BorderLayout.CENTER);
+                                j0++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(cardsButtons[j][column]);
+                                    Main.panel4.add(cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
+                    else if (play == 2) {
+                        reserveButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+//                                Players.player2(null, reserveButton, null,0,null, j, 1);
+                                Players.reserve2[j1].setIcon(icon2);
+                                Players.reserve2[j1].add(Cards.label2[j], BorderLayout.CENTER);
+                                j1++;
+                                if (Card >= 6 && Card <= 14){
+//                                    Main.panel4.remove(Cards.cardsButtons[j][column]);
+                                    Main.panel4.add(Cards.cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -219,20 +337,79 @@ public class Cards extends JFrame{
                     cardFrame3.pack();
                     cardFrame3.setVisible(true);
 
-                    purchaseButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            if (play == 1) Players.player1(purchaseButton, null, null,0,null, k, 2);
-                            else if (play == 2) Players.player2(purchaseButton, null, null,0,null, k, 2);
-                        }
-                    });
-                    reserveButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            if (play == 1) Players.player1(null, reserveButton, null,0,null, k, 2);
-                            else if (play == 2) Players.player2(null, reserveButton, null,0,null, k, 2);
-                        }
-                    });
+                    if (play == 1) {
+                        purchaseButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+
+//                                Players.player1(purchaseButton, null, null,0,null, k, 2);
+                                Players.buttons1[i0].setIcon(icon3);
+                                Players.buttons1[i0].add(label3[k], BorderLayout.CENTER);
+                                Players.totalScore1 += adultsCardScore[k];
+                                i0++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(Cards.cardsButtons[k][column]);
+                                    Main.panel4.add(Cards.cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
+                    else if (play == 2) {
+                        purchaseButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+//                                Players.player2(purchaseButton, null, null,0,null, k, 2);
+                                Players.buttons2[i1].setIcon(icon3);
+                                Players.buttons2[i1].add(label3[k], BorderLayout.CENTER);
+                                Players.totalScore2 += adultsCardScore[k];
+                                i1++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(Cards.cardsButtons[k][column]);
+                                    Main.panel4.add(Cards.cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
+
+                    if (play == 1) {
+                        reserveButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+
+//                                Players.player1(null, reserveButton, null,0,null, k, 2);
+                                Players.reserve1[j0].setIcon(icon3);
+                                Players.reserve1[j0].add(Cards.label3[k], BorderLayout.CENTER);
+                                j0++;
+                                if (Card >= 6 && Card <= 14) {
+//                                    Main.panel4.remove(Cards.cardsButtons[k][column]);
+                                    Main.panel4.add(Cards.cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
+                    else if (play == 2) {
+                        reserveButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent actionEvent) {
+//                                Players.player2(null, reserveButton, null,0,null, k, 2);
+                                Players.reserve2[j1].setIcon(icon3);
+                                Players.reserve2[j1].add(Cards.label3[k], BorderLayout.CENTER);
+                                j1++;
+                                if (Card >= 6 && Card <= 14){
+//                                    Main.panel4.remove(Cards.cardsButtons[k][column]);
+                                    Main.panel4.add(Cards.cardsButtons[Card][column]);
+                                    Main.panel4.repaint();
+                                    Card++;
+                                }
+                            }
+                        });
+                    }
                 }
             });
         }

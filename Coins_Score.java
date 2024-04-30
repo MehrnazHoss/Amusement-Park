@@ -19,6 +19,7 @@ public class Coins_Score extends JLabel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         switch (score) {
+            //print score on cards
             case 1:
                 g.setColor(new Color(75, 100, 75));
                 g.fillOval(0, 0, 15, 15);
@@ -45,6 +46,7 @@ public class Coins_Score extends JLabel{
                 break;
         }
 
+        //print discount coin on cards
         switch (discountCoin) {
             case 1:
                 g.setColor(Color.WHITE);
@@ -68,7 +70,10 @@ public class Coins_Score extends JLabel{
                 break;
         }
 
+        //print paid coins on cards
         switch (paidCoin){
+
+            //children
             case 1:
                 g.setColor(Color.GREEN);
                 g.fillOval(0, 70, 15, 15);
@@ -126,6 +131,7 @@ public class Coins_Score extends JLabel{
                 break;
 
 
+            //youth
             case 6:
                 g.setColor(Color.RED);
                 g.fillOval(0, 70, 15, 15);
@@ -198,6 +204,7 @@ public class Coins_Score extends JLabel{
                 break;
 
 
+            //adults
             case 11:
                 g.setColor(Color.BLACK);
                 g.fillOval(0, 70, 15, 15);
@@ -265,6 +272,7 @@ public class Coins_Score extends JLabel{
                 break;
 
 
+            //prize claw
             case 16:
                 g.setColor(Color.BLUE);
                 g.fillOval(0, 70, 15, 15);

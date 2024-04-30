@@ -146,16 +146,38 @@ public class SlotMachine extends JFrame {
                 oneCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button31,1,"green",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button31,1,"green",-1,-1);
+                        if (play == 1) {
+                            if (counterOfGreenCoins > 0) counterOfGreenCoins--;
+                            Players.greenCoins1++;
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfGreenCoins > 0) SlotMachine.counterOfGreenCoins--;
+                            Players.greenCoins2++;
+                        }
                     }
                 });
 
                 twoCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button31,2,"green",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button31,2,"green",-1,-1);
+                          if (play == 1) {
+                              if (SlotMachine.counterOfGreenCoins == 4){
+                              SlotMachine.counterOfGreenCoins -= 2;
+                              Players.greenCoins1+=2;
+                          }
+                          else if (SlotMachine.counterOfGreenCoins < 5 && SlotMachine.counterOfGreenCoins > 0){
+                              JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                          }
+                        }
+                        else if (play == 2) {
+                              if (SlotMachine.counterOfGreenCoins == 4){
+                                  SlotMachine.counterOfGreenCoins -= 2;
+                                  Players.greenCoins2+=2;
+                              }
+                              else if (SlotMachine.counterOfGreenCoins < 4 && SlotMachine.counterOfGreenCoins > 0){
+                                  JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                              }
+                        }
                     }
                 });
             }
@@ -186,16 +208,38 @@ public class SlotMachine extends JFrame {
                 oneCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button32,1,"white",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button32,1,"white",-1,-1);
+                        if (play == 1) {
+                            if (counterOfWhiteCoins > 0) counterOfWhiteCoins--;
+                            Players.whiteCoins1++;
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfWhiteCoins > 0) SlotMachine.counterOfWhiteCoins--;
+                            Players.whiteCoins2++;
+                        }
                     }
                 });
 
                 twoCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button32,2,"white",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button32,2,"white",-1,-1);
+                        if (play == 1) {
+                            if (SlotMachine.counterOfWhiteCoins == 4){
+                                SlotMachine.counterOfWhiteCoins -= 2;
+                                Players.whiteCoins1+=2;
+                            }
+                            else if (SlotMachine.counterOfWhiteCoins < 4 && SlotMachine.counterOfWhiteCoins > 0){
+                                JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfWhiteCoins == 4){
+                                SlotMachine.counterOfWhiteCoins -= 2;
+                                Players.whiteCoins2+=2;
+                            }
+                            else if (SlotMachine.counterOfWhiteCoins < 4 && SlotMachine.counterOfWhiteCoins > 0){
+                                JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
                     }
                 });
             }
@@ -226,16 +270,38 @@ public class SlotMachine extends JFrame {
                 oneCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button33,1,"black",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button33,1,"black",-1,-1);
+                        if (play == 1) {
+                            if (counterOfBlackCoins > 0) counterOfBlackCoins--;
+                            Players.blackCoins1++;
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfBlackCoins > 0) SlotMachine.counterOfBlackCoins--;
+                            Players.blackCoins2++;
+                        }
                     }
                 });
 
                 twoCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button33,2,"black",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button33,2,"black",-1,-1);
+                        if (play == 1) {
+                            if (SlotMachine.counterOfBlackCoins == 4){
+                                SlotMachine.counterOfBlackCoins -= 2;
+                                Players.blackCoins1+=2;
+                            }
+                            else if (SlotMachine.counterOfBlackCoins < 4 && SlotMachine.counterOfBlackCoins > 0){
+                                JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfBlackCoins == 4){
+                                SlotMachine.counterOfBlackCoins -= 2;
+                                Players.blackCoins2+=2;
+                            }
+                            else if (SlotMachine.counterOfBlackCoins < 5 && SlotMachine.counterOfBlackCoins > 0){
+                                JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
                     }
                 });
             }
@@ -266,16 +332,38 @@ public class SlotMachine extends JFrame {
                 oneCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button34,1,"blue",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button34,1,"blue",-1,-1);
+                        if (play == 1) {
+                            if (counterOfBlueCoins > 0) counterOfBlueCoins--;
+                            Players.blueCoins1++;
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfBlueCoins > 0) SlotMachine.counterOfBlueCoins--;
+                            Players.blueCoins2++;
+                        }
                     }
                 });
 
                 twoCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button34,2,"blue",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button34,2,"blue",-1,-1);
+                        if (play == 1) {
+                            if (SlotMachine.counterOfBlueCoins == 4){
+                                SlotMachine.counterOfBlueCoins -= 2;
+                                Players.blueCoins1+=2;
+                            }
+                            else if (SlotMachine.counterOfBlueCoins < 4 && SlotMachine.counterOfBlueCoins > 0){
+                                JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfBlueCoins == 4){
+                                SlotMachine.counterOfBlueCoins -= 2;
+                                Players.blueCoins2+=2;
+                            }
+                            else if (SlotMachine.counterOfBlueCoins < 5 && SlotMachine.counterOfBlueCoins > 0){
+                                JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
                     }
                 });
             }
@@ -306,16 +394,38 @@ public class SlotMachine extends JFrame {
                 oneCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button35,1,"red",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button35,1,"red",-1,-1);
+                        if (play == 1) {
+                            if (counterOfRedCoins > 0) counterOfRedCoins--;
+                            Players.redCoins1++;
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfRedCoins > 0) SlotMachine.counterOfRedCoins--;
+                            Players.redCoins2++;
+                        }
                     }
                 });
 
                 twoCoin.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
-                        if (play == 1) Players.player1(null,null,button35,2,"red",-1,-1);
-                        else if (play == 2) Players.player2(null,null,button35,2,"red",-1,-1);
+                        if (play == 1) {
+                            if (SlotMachine.counterOfRedCoins == 4){
+                                SlotMachine.counterOfRedCoins -= 2;
+                                Players.redCoins1+=2;
+                            }
+                            else if (SlotMachine.counterOfRedCoins < 4 && SlotMachine.counterOfRedCoins > 0){
+                                JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        else if (play == 2) {
+                            if (SlotMachine.counterOfRedCoins == 4){
+                                SlotMachine.counterOfRedCoins -= 2;
+                                Players.redCoins2+=2;
+                            }
+                            else if (SlotMachine.counterOfRedCoins < 4 && SlotMachine.counterOfRedCoins > 0){
+                                JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
                     }
                 });
             }

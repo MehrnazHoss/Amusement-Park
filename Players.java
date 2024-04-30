@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.Callable;
 
 public class Players extends JButton {
     public static JButton[] buttons1 = new JButton[15];
@@ -47,6 +48,7 @@ public class Players extends JButton {
     static ImageIcon icon1 = new ImageIcon("icon1.png");
     static ImageIcon icon2 = new ImageIcon("icon2.png");
     static ImageIcon icon3 = new ImageIcon("icon3.png");
+
 
     public Players() {
 
@@ -235,264 +237,268 @@ public class Players extends JButton {
             Main.panel21.add(reserve2[j1]);
         }
     }
-    public static void player1(JRadioButton buyCard,JRadioButton reserveCard,JButton getCoin,int counterOfCoin,String colorOfCoin,int h,int k){
+    public static void player1(){
 
-        if (reserveCard == null && getCoin == null) {
-            switch (k) {
-                case 0:
-                    buttons1[i0].setIcon(icon1);
-                    buttons1[i0].add(Cards.label1[h], BorderLayout.CENTER);
-                    totalScore1 += Cards.childrenCardScore[h];
-                    break;
-                case 1:
-                    buttons1[i0].setIcon(icon2);
-                    buttons1[i0].add(Cards.label2[h], BorderLayout.CENTER);
-                    totalScore1 += Cards.youthCardScore[h];
-                    break;
-                case 2:
-                    buttons1[i0].setIcon(icon3);
-                    buttons1[i0].add(Cards.label3[h], BorderLayout.CENTER);
-                    totalScore1 += Cards.adultsCardScore[h];
-                    break;
-            }
-            i0++;
-            if (Card >= 6 && Card <= 14) {
-                Main.panel4.remove(Cards.cardsButtons[h][k]);
-                Main.panel4.add(Cards.cardsButtons[Card][k]);
-                Main.panel4.repaint();
-                Card++;
-            }
+//        if (reserveCard == null && getCoin == null) {
+//            switch (k) {
+//                case 0:
+//                    buttons1[i0].setIcon(icon1);
+//                    buttons1[i0].add(Cards.label1[h], BorderLayout.CENTER);
+//                    totalScore1 += Cards.childrenCardScore[h];
+//                    break;
+//                case 1:
+//                    buttons1[i0].setIcon(icon2);
+//                    buttons1[i0].add(Cards.label2[h], BorderLayout.CENTER);
+//                    totalScore1 += Cards.youthCardScore[h];
+//                    break;
+//                case 2:
+//                    buttons1[i0].setIcon(icon3);
+//                    buttons1[i0].add(Cards.label3[h], BorderLayout.CENTER);
+//                    totalScore1 += Cards.adultsCardScore[h];
+//                    break;
+//            }
+//            i0++;
+//            if (Card >= 6 && Card <= 14) {
+//                Main.panel4.remove(Cards.cardsButtons[h][k]);
+//                Main.panel4.add(Cards.cardsButtons[Card][k]);
+//                Main.panel4.repaint();
+//                Card++;
+//            }
+//
+//        }
+//
+//        else if (buyCard == null && getCoin == null) {
+//            switch (k){
+//                case 0:
+//                    reserve1[j0].setIcon(icon1);
+//                    reserve1[j0].add(Cards.label1[h], BorderLayout.CENTER);
+//                    break;
+//                case 1:
+//                    reserve1[j0].setIcon(icon2);
+//                    reserve1[j0].add(Cards.label2[h], BorderLayout.CENTER);
+//                    break;
+//                case 2:
+//                    reserve1[j0].setIcon(icon3);
+//                    reserve1[j0].add(Cards.label3[h], BorderLayout.CENTER);
+//                    break;
+//            }
+//            j0++;
+//            if (Card >= 6 && Card <= 14){
+//                Main.panel4.remove(Cards.cardsButtons[h][k]);
+//                Main.panel4.add(Cards.cardsButtons[Card][k]);
+//                Main.panel4.repaint();
+//                Card++;
+//            }
+//        }
+        Cards.functionOfCards(1);
+        SlotMachine.functionOfSlot(1);
 
-        }
-
-        else if (buyCard == null && getCoin == null) {
-            switch (k){
-                case 0:
-                    reserve1[j0].setIcon(icon1);
-                    reserve1[j0].add(Cards.label1[h], BorderLayout.CENTER);
-                    break;
-                case 1:
-                    reserve1[j0].setIcon(icon2);
-                    reserve1[j0].add(Cards.label2[h], BorderLayout.CENTER);
-                    break;
-                case 2:
-                    reserve1[j0].setIcon(icon3);
-                    reserve1[j0].add(Cards.label3[h], BorderLayout.CENTER);
-                    break;
-            }
-            j0++;
-            if (Card >= 6 && Card <= 14){
-                Main.panel4.remove(Cards.cardsButtons[h][k]);
-                Main.panel4.add(Cards.cardsButtons[Card][k]);
-                Main.panel4.repaint();
-                Card++;
-            }
-        }
-
-        else if (buyCard == null && reserveCard == null && h == -1 && k == -1){
-            if (counterOfCoin == 1){
-                switch (colorOfCoin){
-                    case "green":
-                        if (SlotMachine.counterOfGreenCoins > 0) SlotMachine.counterOfGreenCoins--;
-                        greenCoins1++;
-                        break;
-                    case "white":
-                        if (SlotMachine.counterOfWhiteCoins > 0) SlotMachine.counterOfWhiteCoins--;
-                        whiteCoins1++;
-                        break;
-                    case "black":
-                        if (SlotMachine.counterOfBlackCoins > 0) SlotMachine.counterOfBlackCoins--;
-                        blackCoins1++;
-                        break;
-                    case "blue":
-                        if (SlotMachine.counterOfBlueCoins > 0) SlotMachine.counterOfBlueCoins--;
-                        blueCoins1++;
-                        break;
-                    case "red":
-                        if (SlotMachine.counterOfRedCoins > 0) SlotMachine.counterOfRedCoins--;
-                        redCoins1++;
-                        break;
-                }
-            }
-            else if (counterOfCoin == 2){
-                switch (colorOfCoin){
-                    case "green":
-                        if (SlotMachine.counterOfGreenCoins == 4){
-                            SlotMachine.counterOfGreenCoins -= 2;
-                            greenCoins1+=2;
-                        }
-                        else if (SlotMachine.counterOfGreenCoins < 5 && SlotMachine.counterOfGreenCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case "white":
-                        if (SlotMachine.counterOfWhiteCoins == 4){
-                            SlotMachine.counterOfWhiteCoins -= 2;
-                            whiteCoins1+=2;
-                        }
-                        else if (SlotMachine.counterOfWhiteCoins < 4 && SlotMachine.counterOfWhiteCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case "black":
-                        if (SlotMachine.counterOfBlackCoins == 4){
-                            SlotMachine.counterOfBlackCoins -= 2;
-                            blackCoins1+=2;
-                        }
-                        else if (SlotMachine.counterOfBlackCoins < 4 && SlotMachine.counterOfBlackCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case "blue":
-                        if (SlotMachine.counterOfBlueCoins == 4){
-                            SlotMachine.counterOfBlueCoins -= 2;
-                            blueCoins1+=2;
-                        }
-                        else if (SlotMachine.counterOfBlueCoins < 4 && SlotMachine.counterOfBlueCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case "red":
-                        if (SlotMachine.counterOfRedCoins == 4){
-                            SlotMachine.counterOfRedCoins -= 2;
-                            redCoins1+=2;
-                        }
-                        else if (SlotMachine.counterOfRedCoins < 4 && SlotMachine.counterOfRedCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                }
-            }
-        }
+//        if (buyCard == null && reserveCard == null && h == -1 && k == -1){
+//            if (counterOfCoin == 1){
+//                switch (colorOfCoin){
+//                    case "green":
+//                        if (SlotMachine.counterOfGreenCoins > 0) SlotMachine.counterOfGreenCoins--;
+//                        greenCoins1++;
+//                        break;
+//                    case "white":
+//                        if (SlotMachine.counterOfWhiteCoins > 0) SlotMachine.counterOfWhiteCoins--;
+//                        whiteCoins1++;
+//                        break;
+//                    case "black":
+//                        if (SlotMachine.counterOfBlackCoins > 0) SlotMachine.counterOfBlackCoins--;
+//                        blackCoins1++;
+//                        break;
+//                    case "blue":
+//                        if (SlotMachine.counterOfBlueCoins > 0) SlotMachine.counterOfBlueCoins--;
+//                        blueCoins1++;
+//                        break;
+//                    case "red":
+//                        if (SlotMachine.counterOfRedCoins > 0) SlotMachine.counterOfRedCoins--;
+//                        redCoins1++;
+//                        break;
+//                }
+//            }
+//            else if (counterOfCoin == 2){
+//                switch (colorOfCoin){
+//                    case "green":
+//                        if (SlotMachine.counterOfGreenCoins == 4){
+//                            SlotMachine.counterOfGreenCoins -= 2;
+//                            greenCoins1+=2;
+//                        }
+//                        else if (SlotMachine.counterOfGreenCoins < 5 && SlotMachine.counterOfGreenCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                    case "white":
+//                        if (SlotMachine.counterOfWhiteCoins == 4){
+//                            SlotMachine.counterOfWhiteCoins -= 2;
+//                            whiteCoins1+=2;
+//                        }
+//                        else if (SlotMachine.counterOfWhiteCoins < 4 && SlotMachine.counterOfWhiteCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                    case "black":
+//                        if (SlotMachine.counterOfBlackCoins == 4){
+//                            SlotMachine.counterOfBlackCoins -= 2;
+//                            blackCoins1+=2;
+//                        }
+//                        else if (SlotMachine.counterOfBlackCoins < 4 && SlotMachine.counterOfBlackCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                    case "blue":
+//                        if (SlotMachine.counterOfBlueCoins == 4){
+//                            SlotMachine.counterOfBlueCoins -= 2;
+//                            blueCoins1+=2;
+//                        }
+//                        else if (SlotMachine.counterOfBlueCoins < 4 && SlotMachine.counterOfBlueCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                    case "red":
+//                        if (SlotMachine.counterOfRedCoins == 4){
+//                            SlotMachine.counterOfRedCoins -= 2;
+//                            redCoins1+=2;
+//                        }
+//                        else if (SlotMachine.counterOfRedCoins < 4 && SlotMachine.counterOfRedCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                }
+//            }
+//        }
     }
 
-    public static void player2(JRadioButton buyCard,JRadioButton reserveCard,JButton getCoin,int counterOfCoin,String colorOfCoin,int h,int k) {
+    public static void player2() {
 
-        if (reserveCard == null && getCoin == null && colorOfCoin == null) {
-            switch (k) {
-                case 0:
-                    buttons2[i].setIcon(icon1);
-                    buttons2[i].add(Cards.label1[h], BorderLayout.CENTER);
-                    totalScore2 += Cards.childrenCardScore[h];
-                    break;
-                case 1:
-                    buttons2[i].setIcon(icon2);
-                    buttons2[i].add(Cards.label2[h], BorderLayout.CENTER);
-                    totalScore2 += Cards.youthCardScore[h];
-                    break;
-                case 2:
-                    buttons2[i].setIcon(icon3);
-                    buttons2[i].add(Cards.label3[h], BorderLayout.CENTER);
-                    totalScore2 += Cards.adultsCardScore[h];
-                    break;
-            }
-            i++;
-            if (Card >= 6 && Card <= 14) {
-                Main.panel4.remove(Cards.cardsButtons[h][k]);
-                Main.panel4.add(Cards.cardsButtons[Card][k]);
-                Main.panel4.repaint();
-                Card++;
-            }
-        }
+//        if (reserveCard == null && getCoin == null && colorOfCoin == null) {
+//            switch (k) {
+//                case 0:
+//                    buttons2[i].setIcon(icon1);
+//                    buttons2[i].add(Cards.label1[h], BorderLayout.CENTER);
+//                    totalScore2 += Cards.childrenCardScore[h];
+//                    break;
+//                case 1:
+//                    buttons2[i].setIcon(icon2);
+//                    buttons2[i].add(Cards.label2[h], BorderLayout.CENTER);
+//                    totalScore2 += Cards.youthCardScore[h];
+//                    break;
+//                case 2:
+//                    buttons2[i].setIcon(icon3);
+//                    buttons2[i].add(Cards.label3[h], BorderLayout.CENTER);
+//                    totalScore2 += Cards.adultsCardScore[h];
+//                    break;
+//            }
+//            i++;
+//            if (Card >= 6 && Card <= 14) {
+//                Main.panel4.remove(Cards.cardsButtons[h][k]);
+//                Main.panel4.add(Cards.cardsButtons[Card][k]);
+//                Main.panel4.repaint();
+//                Card++;
+//            }
+//        }
+//
+//        else if (buyCard == null && getCoin == null && colorOfCoin == null) {
+//            switch (k){
+//                case 0:
+//                    reserve2[j].setIcon(icon1);
+//                    reserve2[j].add(Cards.label1[h], BorderLayout.CENTER);
+//                    break;
+//                case 1:
+//                    reserve2[j].setIcon(icon2);
+//                    reserve2[j].add(Cards.label2[h], BorderLayout.CENTER);
+//                    break;
+//                case 2:
+//                    reserve2[j].setIcon(icon3);
+//                    reserve2[j].add(Cards.label3[h], BorderLayout.CENTER);
+//                    break;
+//            }
+//            j++;
+//            if (Card >= 6 && Card <= 14){
+//                Main.panel4.remove(Cards.cardsButtons[h][k]);
+//                Main.panel4.add(Cards.cardsButtons[Card][k]);
+//                Main.panel4.repaint();
+//                Card++;
+//            }
+//        }
+        Cards.functionOfCards(2);
+        SlotMachine.functionOfSlot(2);
 
-        else if (buyCard == null && getCoin == null && colorOfCoin == null) {
-            switch (k){
-                case 0:
-                    reserve2[j].setIcon(icon1);
-                    reserve2[j].add(Cards.label1[h], BorderLayout.CENTER);
-                    break;
-                case 1:
-                    reserve2[j].setIcon(icon2);
-                    reserve2[j].add(Cards.label2[h], BorderLayout.CENTER);
-                    break;
-                case 2:
-                    reserve2[j].setIcon(icon3);
-                    reserve2[j].add(Cards.label3[h], BorderLayout.CENTER);
-                    break;
-            }
-            j++;
-            if (Card >= 6 && Card <= 14){
-                Main.panel4.remove(Cards.cardsButtons[h][k]);
-                Main.panel4.add(Cards.cardsButtons[Card][k]);
-                Main.panel4.repaint();
-                Card++;
-            }
-        }
-
-        else if (buyCard == null && reserveCard == null && h == -1 && k == -1){
-            if (counterOfCoin == 1){
-                switch (colorOfCoin){
-                    case "green":
-                        if (SlotMachine.counterOfGreenCoins > 0) SlotMachine.counterOfGreenCoins--;
-                        greenCoins2++;
-                        break;
-                    case "white":
-                        if (SlotMachine.counterOfWhiteCoins > 0) SlotMachine.counterOfWhiteCoins--;
-                        whiteCoins2++;
-                        break;
-                    case "black":
-                        if (SlotMachine.counterOfBlackCoins > 0) SlotMachine.counterOfBlackCoins--;
-                        blackCoins2++;
-                        break;
-                    case "blue":
-                        if (SlotMachine.counterOfBlueCoins > 0) SlotMachine.counterOfBlueCoins--;
-                        blueCoins2++;
-                        break;
-                    case "red":
-                        if (SlotMachine.counterOfRedCoins > 0) SlotMachine.counterOfRedCoins--;
-                        redCoins2++;
-                        break;
-                }
-            }
-            else if (counterOfCoin == 2){
-                switch (colorOfCoin){
-                    case "green":
-                        if (SlotMachine.counterOfGreenCoins == 4){
-                            SlotMachine.counterOfGreenCoins -= 2;
-                            greenCoins2+=2;
-                        }
-                        else if (SlotMachine.counterOfGreenCoins < 4 && SlotMachine.counterOfGreenCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case "white":
-                        if (SlotMachine.counterOfWhiteCoins == 4){
-                            SlotMachine.counterOfWhiteCoins -= 2;
-                            whiteCoins2+=2;
-                        }
-                        else if (SlotMachine.counterOfWhiteCoins < 4 && SlotMachine.counterOfWhiteCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case "black":
-                        if (SlotMachine.counterOfBlackCoins == 4){
-                            SlotMachine.counterOfBlackCoins -= 2;
-                            blackCoins2+=2;
-                        }
-                        else if (SlotMachine.counterOfBlackCoins < 5 && SlotMachine.counterOfBlackCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case "blue":
-                        if (SlotMachine.counterOfBlueCoins == 4){
-                            SlotMachine.counterOfBlueCoins -= 2;
-                            blueCoins2+=2;
-                        }
-                        else if (SlotMachine.counterOfBlueCoins < 5 && SlotMachine.counterOfBlueCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                    case "red":
-                        if (SlotMachine.counterOfRedCoins == 4){
-                            SlotMachine.counterOfRedCoins -= 2;
-                            redCoins2+=2;
-                        }
-                        else if (SlotMachine.counterOfRedCoins < 4 && SlotMachine.counterOfRedCoins > 0){
-                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
-                        }
-                        break;
-                }
-            }
-        }
+//        if (buyCard == null && reserveCard == null && h == -1 && k == -1){
+//            if (counterOfCoin == 1){
+//                switch (colorOfCoin){
+//                    case "green":
+//                        if (SlotMachine.counterOfGreenCoins > 0) SlotMachine.counterOfGreenCoins--;
+//                        greenCoins2++;
+//                        break;
+//                    case "white":
+//                        if (SlotMachine.counterOfWhiteCoins > 0) SlotMachine.counterOfWhiteCoins--;
+//                        whiteCoins2++;
+//                        break;
+//                    case "black":
+//                        if (SlotMachine.counterOfBlackCoins > 0) SlotMachine.counterOfBlackCoins--;
+//                        blackCoins2++;
+//                        break;
+//                    case "blue":
+//                        if (SlotMachine.counterOfBlueCoins > 0) SlotMachine.counterOfBlueCoins--;
+//                        blueCoins2++;
+//                        break;
+//                    case "red":
+//                        if (SlotMachine.counterOfRedCoins > 0) SlotMachine.counterOfRedCoins--;
+//                        redCoins2++;
+//                        break;
+//                }
+//            }
+//            else if (counterOfCoin == 2){
+//                switch (colorOfCoin){
+//                    case "green":
+//                        if (SlotMachine.counterOfGreenCoins == 4){
+//                            SlotMachine.counterOfGreenCoins -= 2;
+//                            greenCoins2+=2;
+//                        }
+//                        else if (SlotMachine.counterOfGreenCoins < 4 && SlotMachine.counterOfGreenCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                    case "white":
+//                        if (SlotMachine.counterOfWhiteCoins == 4){
+//                            SlotMachine.counterOfWhiteCoins -= 2;
+//                            whiteCoins2+=2;
+//                        }
+//                        else if (SlotMachine.counterOfWhiteCoins < 4 && SlotMachine.counterOfWhiteCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                    case "black":
+//                        if (SlotMachine.counterOfBlackCoins == 4){
+//                            SlotMachine.counterOfBlackCoins -= 2;
+//                            blackCoins2+=2;
+//                        }
+//                        else if (SlotMachine.counterOfBlackCoins < 5 && SlotMachine.counterOfBlackCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                    case "blue":
+//                        if (SlotMachine.counterOfBlueCoins == 4){
+//                            SlotMachine.counterOfBlueCoins -= 2;
+//                            blueCoins2+=2;
+//                        }
+//                        else if (SlotMachine.counterOfBlueCoins < 5 && SlotMachine.counterOfBlueCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                    case "red":
+//                        if (SlotMachine.counterOfRedCoins == 4){
+//                            SlotMachine.counterOfRedCoins -= 2;
+//                            redCoins2+=2;
+//                        }
+//                        else if (SlotMachine.counterOfRedCoins < 4 && SlotMachine.counterOfRedCoins > 0){
+//                            JOptionPane.showMessageDialog(null,"You cannot take 2 Coins","ERROR",JOptionPane.ERROR_MESSAGE);
+//                        }
+//                        break;
+//                }
+//            }
+//        }
     }
 }
